@@ -1,0 +1,695 @@
+:root {
+  --pink: #F8BBD0;
+  --bright-pink: #FFB3D9;
+  --orange: #FF7F11;
+  --green: #006600;
+  --white: #FFFFFF;
+  --black: #000000;
+  --grey-bg: #EDC1C8;
+  --light-grey: #E4E4DE;
+  --label-bg: #FFDE59;
+  --background-color: #FFEFB3;
+  --accent-color: #F90034;
+  --menu: #0040FF;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: 'Book Antiqua', Arial, sans-serif; 
+  color: var(--black); 
+  background: var(--background-color);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Make the nav a flex container */
+nav {
+  display: flex;
+  align-items: center;    /* vertically center items */
+  justify-content: space-between; /* logo in the middle if needed */
+  position: sticky;       /* makes nav stick to top when scrolling */
+  top: 0;                 /* stick to the very top */
+  z-index: 1000;          /* ensure it stays above other content */
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  min-height: 80px;       /* ensure minimum height */
+  background: var(--background-color); /* ensure background is visible when sticky */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+/* Center logo link absolutely */
+nav .nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  /* remove display:none; */
+}
+
+/* Control the image size */
+nav .nav-logo img {
+  max-height: 80px; /* increased from 40px to fit better */
+  width: auto;      /* preserve aspect ratio */
+  display: block;   /* remove any inline whitespace/margins */
+}
+
+/* Control the image size */
+nav .nav-logo img {
+  max-height: 60px; /* or whatever fits your nav’s height */
+  width: auto;      /* preserve aspect ratio */
+  display: block;   /* remove any inline whitespace/margins */
+}
+
+nav .hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 1rem;
+  z-index: 1001;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Cross icon when menu is open */
+nav .hamburger.open {
+  color: var(--white);
+  font-size: 2rem;
+}
+
+nav .menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+  padding: 0 6rem; /* Add padding to avoid overlap with centered logo */
+}
+
+nav .menu li {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+nav .menu li a {
+  text-decoration: none;
+  color: var(--menu);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: .9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+nav .menu li a:hover {
+  background-color: transparent;
+  color: var(--background-color);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  nav .hamburger {
+    display: block;
+  }
+  nav .menu {
+    display: none;
+    flex-direction: column;
+    /* … */
+  }
+  nav .menu.open {
+    display: flex;
+  }
+}
+
+main {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.section-intro {
+  display: flex;
+  min-height: 60vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.section-intro .photo {
+  background: #eee;
+  background-image: url('IMG_2869.png');
+  background-size: cover;
+  background-position: center;
+  flex: 1;                /* tar 50% var */
+  aspect-ratio: 1 / 1;    /* gör varje ruta kvadratisk */
+  min-width: 0; 
+}
+
+.section-intro .photo2 {
+  background: var(--background-color);
+  background-image: url('poster.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex: 1;                /* tar 50% var */
+  min-height: 60vh;       /* matches section-intro min-height */
+  min-width: 0; 
+  border-bottom: 2px solid var(--accent-color); /* red line at bottom */
+}
+
+/* Instagram section styling */
+.instagram-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  background: var(--background-color);
+  width: 100%;
+}
+
+/* Instagram icon styling */
+.instagram-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.instagram-link:hover {
+  color: var(--menu);
+  transform: scale(1.1);
+}
+
+.instagram-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.section-intro .text {
+  background: var(--menu);
+  color: var(--white);
+  flex: 1;                /* tar 50% var */
+  min-height: 400px;      /* minimum height instead of square aspect ratio */
+  min-width: 0;
+  padding: 2rem;          /* add padding for better text spacing */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box; /* include padding in width calculation */
+}
+.section-intro .text h2 {
+  font-family: "Lexend Zetta", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.section-intro .text p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  text-align: justify;       /* left-align paragraphs */
+  width: 100%;            /* use full width */
+  font-size: 1rem;        /* ensure readable font size */
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+}
+.activities-section {
+  padding: 2rem 0;
+  border-bottom: 2px solid var(--accent-color); /* red line at bottom */
+}
+.activities-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--black);
+}
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin: 0 2rem;
+}
+.activity-card {
+  position: relative;
+  background: var(--background-color);
+  height: 200px;
+  padding: 0;            /* removed padding so images fill entire square */
+}
+
+.activity-card:nth-child(1) { background: #EB7660; }
+.activity-card:nth-child(2) { background: var(--background-color); }
+.activity-card:nth-child(3) { background: var(--background-color); }
+.activity-card:nth-child(4) { background: #F8B5A2; }
+.activity-card .see-btn {
+  position: absolute;
+  bottom: -20px;
+  left: 100%;
+  transform: translateX(-50%);
+  background: var(--white);
+  padding: .75rem 2rem;
+  border: 1px solid var(--black);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  text-decoration: none;
+  color: var(--black);
+}
+footer {
+  background: var(--background-color);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+footer a {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: .9rem;
+}
+/* Responsive for section-intro */
+@media (max-width: 768px) {
+  .section-intro {
+    display: flex;
+    flex-direction: column;
+    min-height: unset;
+  }
+  .section-intro .photo,
+  .section-intro .text {
+    width: 100%;
+    min-height: 250px;      /* increased from 200px for mobile */
+    box-sizing: border-box;
+  }
+  .section-intro .text {
+    padding: 1.5rem;       /* adequate padding for mobile */
+    min-height: 70vh !important;     /* much taller - 70% of viewport height */
+  }
+  .section-intro .text h2 {
+    font-size: 2rem;       /* slightly smaller heading on mobile */
+  }
+  .section-intro .text p {
+    font-size: 0.95rem;    /* slightly smaller text on mobile for better fit */
+  }
+  .activities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* --- Top Banner --- */
+.top-banner {
+  background: var(--accent-color);       /* mörkröd */
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  padding: 0.2rem 0;                     /* padding for better spacing */
+}
+
+.top-banner .marquee {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  will-change: transform;
+}
+
+.top-banner .marquee span {
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  padding-right: 0.5rem;       /* reduced spacing between words */
+}
+
+/* Different banner text styles */
+.banner-text-bold {
+  font-family: "Lexend Zetta", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+.banner-text-italic {
+  font-family: 'Times New Roman', serif;
+  font-weight: normal;
+  font-style: italic;
+  text-transform: capitalize;
+}
+
+.banner-text-normal {
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-25%); }
+}
+
+.activities-btn {
+      display: block;
+      width: 100%;
+      background: var(--accent-color);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem 0;
+      border: none;
+      cursor: pointer;
+      
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .activities-btn .animated-text {
+      display: inline-block;
+      font-family: "Lexend Zetta", sans-serif;
+      /* Animation: italic + skew back and forth */
+      animation: spotify-anim-686e749c39022 0.7s infinite alternate;
+    }
+    
+   @keyframes spotify-anim-686e749c39022 {
+      0% {
+        transform: skewX(30deg);
+      }
+      100% {
+        transform: skewX(-30deg);
+      }
+      
+    }
+ @media (max-width: 768px) {
+      nav .hamburger { 
+        display: block; 
+        position: fixed;
+        top: 3rem;              /* increased from 1.5rem to match larger nav */
+        left: 2rem;
+        z-index: 1001;
+      }
+      
+      nav .menu { 
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--menu);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        padding-top: 250px;               /* removed top padding */
+      }
+      
+      nav .menu.open { 
+        display: flex; 
+        animation: slideIn 0.3s ease-out;
+      }
+      
+      nav .menu li { 
+        border: none;
+        margin: 0.2 rem 0;                /* removed margin since we're using gap */
+      }
+      
+      nav .menu li a { 
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        color: var(--white);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+        background: transparent;
+      }
+      
+      nav .menu li a:hover,
+      nav .menu li a.active {
+        color: var(--black);
+        color: var(--background-color);
+        background: transparent;
+        transform: scale(1.05);
+      }
+      
+      /* Keep nav bar visible at top */
+      nav {
+        position: sticky;
+        top: 0;
+        z-index: 1001;
+        background: var(--background-color);
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        min-height: 120px;      /* increased from 80px - taller header */
+        padding: 2rem 2rem;     /* increased from 1.5rem - more padding */
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      
+      /* Show centered logo on mobile */
+      nav .nav-logo { 
+        display: block;
+        z-index: 1001;
+      }
+      
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+ }
+
+/* Activity Controls Styling */
+.activity-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: var(--background-color);
+  border: none;
+  border-radius: 5px;
+}
+
+.filter-controls {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.activity-controls label {
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.activity-controls select {
+  padding: 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: var(--background-color);
+  border: none;
+  border-bottom: 1px solid var(--black);
+  border-radius: 0;
+  color: var(--black);
+}
+
+.activity-controls select:hover {
+  background: var(--background-color);
+}
+
+.activity-controls select:focus {
+  outline: none;
+  background: var(--background-color);
+}
+
+/* Enhanced Activity Item and Card Styling */
+
+/* Enhanced Activity Item and Card Styling */
+.activity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.activity-item.hidden {
+  display: none;
+}
+
+.activity-card {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  margin-bottom: 0.3rem;
+  transition: all 0.3s ease;
+  background: var(--background-color);
+}
+
+.activity-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.activity-content {
+  text-align: left;
+  width: 100%;
+}
+
+.activity-content h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--black);
+  font-weight: 300;
+}
+
+.activity-content .date {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+/* Grid layout for activities */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .activities-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  .activity-card {
+    aspect-ratio: 1 / 1;
+  }
+  
+  /* Instagram section mobile adjustments */
+  .instagram-section {
+    padding: 2rem 0;
+  }
+  
+  .instagram-icon {
+    width: 35px;
+    height: 35px;
+  }
+}
+
+/* Activity text overlay styling */
+.activity-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 64, 255, 0.9);  /* Semi-transparent blue using menu color */
+  color: var(--white);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  overflow-y: auto;  /* Allow vertical scrolling if text is long */
+}
+
+.activity-text.show {
+  opacity: 1;
+}
+
+.activity-text.hidden {
+  display: none;
+}
+
+.activity-text p {
+  font-size: 0.85rem;
+  line-height: 1.4;   /* More comfortable line spacing */
+  margin: 0;
+  max-height: 100%;
+  overflow-y: auto;   /* Make text scrollable if needed */
+  text-align: left;   /* Left align for better readability of long text */
+  width: 100%;
+}
+
+/* Make activity cards clickable */
+.activity-card {
+  cursor: pointer;
+  position: relative;
+}
+
+/* Image Gallery Section */
+.image-gallery-section {
+  width: 100%;
+  padding: 0; /* removed padding so image touches red lines */
+  border-top: 2px solid var(--accent-color); /* red line at top */
+  border-bottom: 2px solid var(--accent-color); /* red line at bottom */
+}
+
+.image-gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* single column to fill width */
+  gap: 0; /* no gap */
+  margin: 0; /* no margin so image goes to edges */
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* no gap */
+}
+
+.gallery-card {
+  position: relative;
+  background: var(--background-color);
+  height: auto;
+  min-height: 200px;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw; /* full viewport width */
+  margin-left: calc(-50vw + 50%); /* center and extend to edges */
+}
+
+.gallery-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* changed to cover to fill width completely */
+  object-position: center;
+}
+
+/* Mobile styles for image gallery */
+@media (max-width: 768px) {
+  .image-gallery-grid {
+    grid-template-columns: 1fr;
+    margin: 0;
+    gap: 0;
+  }
+  
+  .gallery-card {
+    height: auto;
+    min-height: 200px;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+  }
+}

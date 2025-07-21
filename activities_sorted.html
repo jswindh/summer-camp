@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="flower.png">
+  <link rel="shortcut icon" type="image/png" href="flower.png">
+  <title>Activities – Charlie Co.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend+Zetta:wght@100..900&family=Poiret+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="main.js"></script>
+  
+</head>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const activityItems = document.querySelectorAll('.activity-item.available');
+    const dayFilter = document.getElementById('day-filter');
+    const activitiesGrid = document.getElementById('activities-grid');
+    
+    // Filter function
+    function filterByDay() {
+      const dayValue = dayFilter.value;
+      
+      // Get all items as array
+      const items = Array.from(activityItems);
+      
+      // Filter items by selected day
+      const filteredItems = items.filter(item => {
+        return dayValue === 'all' || item.dataset.date === dayValue;
+      });
+      
+      // Hide all items first
+      items.forEach(item => {
+        item.classList.add('hidden');
+      });
+      
+      // Show filtered items
+      filteredItems.forEach(item => {
+        item.classList.remove('hidden');
+      });
+      
+      // Update results count
+      updateResultsCount(filteredItems.length, items.length);
+    }
+    
+    function updateResultsCount(shown, total) {
+      let resultsInfo = document.querySelector('.results-info');
+      if (!resultsInfo) {
+        resultsInfo = document.createElement('div');
+        resultsInfo.className = 'results-info';
+        document.querySelector('.activities-section h2').insertAdjacentElement('afterend', resultsInfo);
+      }
+      resultsInfo.textContent = `Showing ${shown} of ${total} activities`;
+    }
+    
+    // Event listener
+    dayFilter.addEventListener('change', filterByDay);
+    
+    // Initial filter
+    filterByDay();
+  });
+</script>
+<body>
+  <nav>
+  <button class="hamburger" aria-label="Öppna meny" aria-expanded="false" id="hamburger-btn">
+    ☰
+  </button>
+  <a href="index.html" class="nav-logo"><img src="flower.png" alt="Home"></a>
+  <ul class="menu" id="mobile-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="activities.html" class="active">Activities</a></li>
+    <li><a href="info.html">Info</a></li>
+  </ul>
+</nav>
+<div class="top-banner">
+  <div class="marquee">
+    <span class="banner-text-bold">SUMMER CAMP</span>
+    <span class="banner-text-italic">26 JULY - 2 AUGUST 2025</span>
+    <span class="banner-text-bold">ORÖD SWEDEN</span>
+    <span class="banner-text-bold">•</span>
+    <span class="banner-text-bold">SUMMER CAMP</span>
+    <span class="banner-text-italic">26 JULY - 2 AUGUST 2025</span>
+    <span class="banner-text-bold">ORÖD SWEDEN</span>
+    <span class="banner-text-bold">•</span>
+    <span class="banner-text-bold">SUMMER CAMP</span>
+    <span class="banner-text-italic">26 JULY - 2 AUGUST 2025</span>
+    <span class="banner-text-bold">ORÖD SWEDEN</span>
+    <span class="banner-text-bold">•</span>
+    <span class="banner-text-bold">SUMMER CAMP</span>
+    <span class="banner-text-italic">26 JULY - 2 AUGUST 2025</span>
+    <span class="banner-text-bold">ORÖD SWEDEN</span>
+    <span class="banner-text-bold">•</span>
+
+  </div>
+</div>
+  <main>      
+      <!-- Filter and Sort Controls -->
+      <div class="activity-controls">
+        <div class="filter-controls">
+          <select id="day-filter">
+            <option value="all">Choose Day</option>
+            <option value="2025-07-28">July 28, 2025</option>
+            <option value="2025-07-29">July 29, 2025</option>
+            <option value="2025-07-30">July 30, 2025</option>
+            <option value="2025-07-31">July 31, 2025</option>
+            <option value="2025-08-01">August 01, 2025</option>
+            <option value="2025-08-02">August 02, 2025</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="activities-grid" id="activities-grid">
+        <!-- JULY 29, 2025 -->
+        <div class="activity-item available" data-date="2025-07-29" data-category="wellness" data-name="bastu">
+          <div class="activity-card">
+            <img src="tshirt.jpeg" alt="T-Shirt Art" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Bring any piece of clothing, to use as your canvas. Let your imagination flow and create a fun piece of wearable art.<br><br>
+                What to bring: a piece of clothing <br>
+                Location: TBD 
+              </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>T-Shirt Art</h3>
+            <p class="date">AM July 29, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-29" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="brannis.jpeg" alt="Swedish Water Slide Baseball" class="activity-image">
+            <div class="activity-text hidden">
+              <p>All swedes have played brännboll growing up. This is the swedish version of baseball. In addition to a normal game of brännboll (which is fun on it's own) we will crank up the fun even more by adding water slides between the bases. <br><br>
+                  What to bring: Sporty clothes <br>
+                  Location: TBD </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Swedish Water Slide Baseball</h3>
+            <p class="date">PM July 29, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-29" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="pparty.jpeg" alt="Pirate Party" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Ahoy mateys! Calling all pirates to rendezvous at the birdhouse for the almost annual pirate party! 
+                <br><br>
+                What to bring: Your best pirate outfit <br>
+                Location: The Bird House
+              </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Pirate Party</h3>
+            <p class="date">Late July 29, 2025</p>
+          </div>
+        </div>
+
+        <!-- JULY 30, 2025 -->
+        <div class="activity-item available" data-date="2025-07-30" data-category="outdoor" data-name="hiking">
+          <div class="activity-card">
+            <img src="workout.jpeg" alt="Morning Work Out" class="activity-image">
+            <div class="activity-text hidden">
+              <p>A full body workout class will be shown on the open air wide screen at Windhs. Join in at 9 o'clock for a great start of the day. <br><br>
+                What to bring: Workout clothes <br>
+                Location: Windh's house </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Morning Work Out</h3>
+            <p class="date">Early July 30, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-30" data-category="outdoor" data-name="hiking">
+          <div class="activity-card">
+            <img src="climb.jpeg" alt="Climbing Park" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Come along with us to Multilevel Sipline klätterpark. This is an activity filled with adventure, loads of fun, and maybe some adrenaline. Obstacle course up to 13 meters above the ground. <br><br>
+
+                  What to bring: Comfortable cloths and good shoes, ex trainers. <br><br>
+                  The price for this activity is 400kr for kids and 500kr for adults. <br>
+                  If you want to join this activity, contact Nilla at 0705722593 latest July 25th.  </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Climbing Park</h3>
+            <p class="date">AM July 30, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-30" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="sports.jpeg" alt="Water Sports" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Let's meet up for an afternoon in, on and around the water! Swim, float, SUP, kajak, canoe, wind surf, pick and chose! For all of you who are interested in sailing, there will be a beginners intro! <br>
+                No need to sign up for this event. Show up of you have a free afternoon. <br><br>  
+                What to bring: swimsuit, towel, sunscreen, water, and a snack! <br>
+                Location: TBD</p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Water Sports</h3>
+            <p class="date">PM July 30, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-30" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="sports.jpeg" alt="Sports Hour" class="activity-image">
+            <div class="activity-text hidden">
+              <p>An hour of sports, fun and games! <br><br>
+                What to bring: Sport clothes <br>
+                Location: TBD</p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Sports Hour</h3>
+            <p class="date">PM July 30, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-30" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="sauna.jpeg" alt="Sauna Skills" class="activity-image">
+            <div class="activity-text hidden">
+              <p>During this sauna hour we will learn everything there is to know about fundamental sauna skills. How to light a fire in the sauna stove, how to bind a vasta, and to prepare sauna makkara. 
+                  Let's meet up by May-Britt's sauna, for an evening of fun! <br><br>
+                  What to bring: towels if you'd like to sauna afterwards <br>
+                  Location: May-Britt's Sauna </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Sauna Skills</h3>
+            <p class="date">Late July 30, 2025</p>
+          </div>
+        </div>
+
+        <!-- JULY 31, 2025 -->
+        <div class="activity-item available" data-date="2025-07-31" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="running.jpeg" alt="Morning Run" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Start your day with a refreshing morning run through the beautiful landscape. We might split up in different pace/distance groups depending on what the crowd wants!
+                <br><br>
+                What to bring: Running shoes <br>
+                Location: TBD 
+              </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Morning Run</h3>
+            <p class="date">Early July 31, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-31" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="swedishfika.jpeg" alt="Swedish Fika" class="activity-image">
+            <div class="activity-text hidden">
+              <p>We have all had Swedish fika, but do you know how to make it? We will make chocolate balls and cinnamon buns. While we wait for the buns to rise, Jenny will teach us some Swedish hymnens. <br><br>
+
+                What to bring: your sugar addiction <br>
+                Location: The Yellow house </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Swedish Fika</h3>
+            <p class="date">AM July 31, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-31" data-category="creative" data-name="cooking">
+          <div class="activity-card">
+            <img src="orodwish.jpeg" alt="Oröd Wishing Three" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Together we will create a permanent art installation in the oröd forest, this might be the start of oröd art park and who knows, soon we may compare with Wanås. <br><br>
+                What to bring: Comfortable clothes <br>
+                Location: The Yellow House </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Oröd Wishing Three</h3>
+            <p class="date">PM July 31, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-07-31" data-category="social" data-name="music">
+          <div class="activity-card">
+            <img src="movie.jpeg" alt="Movie Night" class="activity-image">
+              <div class="activity-text hidden">
+              <p>Come to the Windh's house for an open air movie night. Bring your cosiest blanket and something to sit on. There will be popcorn 🍿 <br><br>
+                What to bring: Cosy blanket and something to sit on <br>
+                Location: Windh's House
+              </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Movie Night</h3>
+            <p class="date">Late July 31, 2025</p>
+          </div>
+        </div>
+
+        <!-- AUGUST 1, 2025 -->
+        <div class="activity-item available" data-date="2025-08-01" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="yoga.jpeg" alt="Morning Yoga" class="activity-image">
+            <div class="activity-text hidden">
+              <p>A yoga class will be shown on the open air wide screen at Windhs! Join in at 9 o'clock for a great start of the day!  <br><br>
+                  What to bring: Yoga cloths, and a matt if you have one <br>
+                  Location: Windh's house </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Morning Yoga</h3>
+            <p class="date">AM August 1, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-08-01" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="nature.jpeg" alt="Nature Painting" class="activity-image">
+            <div class="activity-text hidden">
+              <p>We will meet up at the bird house for a walk in the nature. On the walk, pick a stone that you will bring back home. This stone will be the canvas for the painting activity where you will make your very own piece of nature art.  <br><br>
+                  What to bring: Comfortable shoes<br>
+                  Location: The Bird House </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Nature Painting</h3>
+            <p class="date">AM August 1, 2025</p>
+          </div>
+        </div>
+        <div class="activity-item available" data-date="2025-08-01" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="cocktail.jpeg" alt="Cocktail Workshop" class="activity-image">
+            <div class="activity-text hidden">
+              <p>Bring your favourite cocktail ingredients, let's make new but also good old cocktails! And for the young wizards; there will be ingredients to experiment with potions. <br><br>
+                  What to bring: Your favorite cocktail ingredients <br>
+                  Location: The Yellow House </p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Cocktail Workshop</h3>
+            <p class="date">Late August 1, 2025</p>
+          </div>
+        </div>
+
+        <!-- AUGUST 2, 2025 -->
+        <div class="activity-item available" data-date="2025-08-02" data-category="creative" data-name="painting">
+          <div class="activity-card">
+            <img src="kparty.jpeg" alt="Kräftskiva" class="activity-image">
+            <div class="activity-text hidden">
+              <p>We will finish this summercamp off strong with a crayfish party! Put on some fancy clothes, your best smile and let's celebrate this beautiful summer in oröd.</p>
+            </div>
+          </div>
+          <div class="activity-content">
+            <h3>Kräftskiva</h3>
+            <p class="date">Late August 2, 2025</p>
+          </div>
+        </div>
+
+    </section>
+  </main>
+    <footer>
+      <div class="instagram-section">
+    <a href="https://instagram.com/summercamporod" class="instagram-link" target="_blank" rel="noopener noreferrer">
+      <svg class="instagram-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.40z"/>
+      </svg>
+    </a>
+  </footer>
+  <script src="main.js"></script>
+</body>
+</html>

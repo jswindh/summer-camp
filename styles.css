@@ -148,6 +148,7 @@ nav .menu.open {
   margin: 0;                        /* Remove all margin */
   gap: 6rem;                        /* Consistent spacing between items */
   animation: slideIn 0.3s ease-out;
+  font-family: 'Lexend Zetta', sans-serif; /* Use the same font as the rest of the site */
 }
 
 nav .menu.open li { 

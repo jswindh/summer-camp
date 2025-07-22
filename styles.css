@@ -25,50 +25,73 @@ body {
 /* Make the nav a flex container */
 nav {
   display: flex;
-  align-items: center;    /* vertically center items */
-  justify-content: space-between; /* logo in the middle if needed */
-  position: sticky;       /* makes nav stick to top when scrolling */
-  top: 0;                 /* stick to the very top */
-  z-index: 1000;          /* ensure it stays above other content */
-  margin: 0 auto;
-  padding: 1.5rem 2rem;
-  min-height: 80px;       /* ensure minimum height */
-  background: var(--background-color); /* ensure background is visible when sticky */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* subtle shadow for depth */
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--background-color);
+  position: relative;
 }
 
-/* Center logo link absolutely */
+/* Logo centered */
 nav .nav-logo {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  /* remove display:none; */
+  z-index: 2;
 }
 
-/* Control the image size */
 nav .nav-logo img {
-  max-height: 80px; /* increased from 40px to fit better */
-  width: auto;      /* preserve aspect ratio */
-  display: block;   /* remove any inline whitespace/margins */
+  max-height: 60px;
+  width: auto;
+  display: block;
 }
 
-/* Control the image size */
-nav .nav-logo img {
-  max-height: 60px; /* or whatever fits your nav’s height */
-  width: auto;      /* preserve aspect ratio */
-  display: block;   /* remove any inline whitespace/margins */
+/* Menu split layout */
+nav .menu {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+
+/* Left side menu items */
+nav .menu li:nth-child(1),
+nav .menu li:nth-child(2) {
+  margin-right: auto;
+}
+
+/* Right side menu item */
+nav .menu li:nth-child(3) {
+  margin-left: auto;
+}
+
+/* Add some spacing between left items */
+nav .menu li:nth-child(1) {
+  margin-right: 2rem;
+}
+
+nav .menu li a {
+  text-decoration: none;
+  color: var(--black);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
 }
 
 nav .hamburger {
-  display: none;
-  font-size: 1.5rem;
+  font-size: 2rem;
   background: none;
   border: none;
   cursor: pointer;
-  margin-right: 1rem;
   z-index: 1001;
   position: relative;
   transition: all 0.3s ease;
+  align-items: center;
+  color: var(--accent-color);
+  margin-left: auto; /* Push hamburger to the right side */
 }
 
 /* Cross icon when menu is open */
@@ -77,51 +100,115 @@ nav .hamburger.open {
   font-size: 2rem;
 }
 
+/* Hide desktop menu items and show hamburger on all screens */
 nav .menu {
+  display: none; /* Hide menu items on all screen sizes */
   list-style: none;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  gap: 0;
-  padding: 0 6rem; /* Add padding to avoid overlap with centered logo */
+  padding: 0;
+  margin: 0;
 }
 
-nav .menu li {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-nav .menu li a {
-  text-decoration: none;
-  color: var(--menu);
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: .9rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+nav .hamburger {
+  display: flex !important; /* Show hamburger on all screen sizes */
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
   position: relative;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color);
+  margin-left: auto; /* Push hamburger to the right side */
+  width: 60px;
+  height: 60px;
+}
+
+/* Cross icon when menu is open */
+nav .hamburger.open {
+  color: var(--white);
+  font-size: 2rem;
+}
+
+/* Full screen menu overlay for all screen sizes */
+nav .menu.open { 
+  display: flex !important;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--menu);
+  flex-direction: column;
+  justify-content: center;          /* Center vertically */
+  align-items: center;              /* Center horizontally */
+  z-index: 1000;
+  padding: 0;                       /* Remove all padding */
+  margin: 0;                        /* Remove all margin */
+  gap: 3rem;                        /* Consistent spacing between items */
+  animation: slideIn 0.3s ease-out;
+}
+
+nav .menu.open li { 
+  border: none;
+  margin: 0;
+  padding: 0;
+  width: auto;                      /* Don't force full width */
+  display: block;                   /* Simple block display */
+  text-align: center;
+}
+
+nav .menu.open li a { 
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  background: transparent;
+  text-align: center;
+  display: inline-block;            /* Inline-block for consistent alignment */
   white-space: nowrap;
 }
 
-nav .menu li a:hover {
-  background-color: transparent;
+nav .menu.open li a:hover,
+nav .menu.open li a.active {
   color: var(--background-color);
-  transform: translateY(-2px);
+  background: transparent;
+  transform: scale(1.05);
 }
 
+/* Adjust hamburger position for desktop */
+@media (min-width: 769px) {
+  nav .hamburger {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+}
+
+/* Mobile specific adjustments */
 @media (max-width: 768px) {
   nav .hamburger {
-    display: block;
+    position: fixed !important;
+    top: 1.6rem !important;
+    left: 1.5rem !important;
   }
-  nav .menu {
-    display: none;
-    flex-direction: column;
-    /* … */
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  nav .menu.open {
-    display: flex;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -142,7 +229,7 @@ main {
 
 .section-intro .photo {
   background: #eee;
-  background-image: url('IMG_2869.png');
+  background-image: url('assets/IMG_2869.png');
   background-size: cover;
   background-position: center;
   flex: 1;                /* tar 50% var */
@@ -152,7 +239,7 @@ main {
 
 .section-intro .photo2 {
   background: var(--background-color);
-  background-image: url('poster.png');
+  background-image: url('assets/poster.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -406,10 +493,11 @@ footer a {
         height: 100vh;
         background: var(--menu);
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;      /* Start from top */
+        align-items: center;              /* Center horizontally */
         z-index: 1000;
-        padding-top: 250px;               /* removed top padding */
+        padding-top: 250px;               /* Push down from top */
+        gap: 2rem;                        /* Add consistent spacing between items */
       }
       
       nav .menu.open { 
@@ -419,7 +507,10 @@ footer a {
       
       nav .menu li { 
         border: none;
-        margin: 0.2 rem 0;                /* removed margin since we're using gap */
+        margin: 0;                        /* Remove margin, use gap instead */
+        width: 100%;                      /* Make all items same width */
+        display: flex;                    /* Make li a flex container */
+        justify-content: center;          /* Center the link inside */
       }
       
       nav .menu li a { 
@@ -432,11 +523,13 @@ footer a {
         transition: all 0.3s ease;
         border-radius: 8px;
         background: transparent;
+        text-align: center;               /* Center text */
+        width: auto;                      /* Let width be automatic */
+        display: block;                   /* Make sure it's a block element */
       }
       
       nav .menu li a:hover,
       nav .menu li a.active {
-        color: var(--black);
         color: var(--background-color);
         background: transparent;
         transform: scale(1.05);
@@ -477,7 +570,7 @@ footer a {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  padding: 1.5rem;
+  padding: 3rem;
   background: var(--background-color);
   border: none;
   border-radius: 5px;
@@ -691,5 +784,36 @@ footer a {
     min-height: 200px;
     width: 100vw;
     margin-left: calc(-50vw + 50%);
+  }
+}
+
+
+/* Hero photo section */
+.hero-photo {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image {
+  width: 100%;
+  height: 40vh;                    /* Default mobile height */
+  object-fit: cover;
+  display: block;
+}
+
+/* Desktop version - full height */
+@media (min-width: 769px) {
+  .hero-image {
+    height: 100vh;                 /* Full viewport height on desktop */
+  }
+}
+
+/* Mobile version - keep existing height */
+@media (max-width: 768px) {
+  .hero-image {
+    height: 40vh;                  /* Keep the same 40vh on mobile */
   }
 }

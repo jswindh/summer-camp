@@ -794,6 +794,7 @@ footer a {
   margin-right: calc(-50vw + 50%);
   overflow: hidden;
   position: relative;
+  margin-top: 0;                    /* Default mobile - no extra spacing */
 }
 
 .hero-image {
@@ -803,15 +804,23 @@ footer a {
   display: block;
 }
 
-/* Desktop version - full height */
+/* Desktop version - add spacing above hero photo */
 @media (min-width: 769px) {
+  .hero-photo {
+    margin-top: 4rem;               /* Add spacing above hero photo on desktop */
+  }
+  
   .hero-image {
     height: 100vh;                 /* Full viewport height on desktop */
   }
 }
 
-/* Mobile version - keep existing height */
+/* Mobile version - keep existing spacing */
 @media (max-width: 768px) {
+  .hero-photo {
+    margin-top: 0;                  /* No extra spacing on mobile */
+  }
+  
   .hero-image {
     height: 40vh;                  /* Keep the same 40vh on mobile */
   }

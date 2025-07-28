@@ -335,10 +335,10 @@ main {
   padding: 0;            /* removed padding so images fill entire square */
 }
 
-.activity-card:nth-child(1) { background: #EB7660; }
+.activity-card:nth-child(1) { background: var(--accent-color); }
 .activity-card:nth-child(2) { background: var(--background-color); }
 .activity-card:nth-child(3) { background: var(--background-color); }
-.activity-card:nth-child(4) { background: #F8B5A2; }
+.activity-card:nth-child(4) { background: var(--accent-color); }
 .activity-card .see-btn {
   position: absolute;
   bottom: -20px;
